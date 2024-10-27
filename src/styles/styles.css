@@ -1,0 +1,236 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* Toggle Button Container */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: var(--toggle-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  transition: background-color 0.3s ease;
+}
+
+/* Toggle Knob */
+.toggle-knob {
+  width: 20px;
+  height: 20px;
+  background-color: var(--knob-color);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Dark Mode Positioning */
+[data-theme="dark"] .toggle-knob {
+  transform: translateX(25px);
+}
+
+/* Light Mode Colors */
+:root {
+  --toggle-bg: #ddd;
+  --knob-color: #fff;
+  --bg-color: #f4f4f9;
+  --text-color: #333;
+}
+
+/* Dark Mode Colors */
+[data-theme="dark"] {
+  --toggle-bg: #444;
+  --knob-color: #333;
+  --bg-color: #222;
+  --text-color: #ddd;
+}
+
+/* Apply Theme Colors */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Fade-in Effect */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply Animation */
+header h1, .search-bar, .sort-dropdown {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
+
+/* Header Style */
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] header h1 {
+  color: #eee;
+}
+
+
+.container {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.error {
+  color: red;
+}
+
+.tag {
+  font-weight: 600;
+  display: inline-block;
+  padding: 5px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Search Bar Container */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Search Input */
+.search-bar input[type="text"] {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input[type="text"]:focus {
+  border-color: #4a90e2;
+  box-shadow: 0px 4px 15px rgba(74, 144, 226, 0.4);
+}
+
+/* Error Style */
+.search-bar .error {
+  color: #ff4d4d;
+  font-size: 0.875rem;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* Dropdown Container */
+.sort-dropdown {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Dropdown Menu */
+.sort-dropdown select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 2px solid #ddd;
+  background-color: #f4f4f9;
+  color: #222;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sort-dropdown select:hover {
+  border-color: #4a90e2;
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .sort-dropdown select {
+  background-color: #333;
+  color: #eee;
+}
+
+input[type="text"] {
+  border: 1px solid var(--text-color);
+  border-radius: 30px;
+  padding: 0.5em;
+  width: 200px;
+}
+
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1em;
+  width: 100%;
+}
+
+.movie-card {
+  background-color: var(--bg-color);
+  border: 2px solid #96e6a1;
+  border-radius: 10px;
+  padding: 1em;
+  color: #fff;
+}
+
+.movie-info div {
+  margin-bottom: 0.5em;
+}
+
+.data-info span {
+  font-weight: 600;
+}
+
+.image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+button {
+  padding: 0.5em 1em;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #523af1;
+}
