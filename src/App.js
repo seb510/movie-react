@@ -29,7 +29,7 @@ export default function App() {
         <section className="movie-section">
             <div className="container">
                 <ThemeToggle/>
-                <h1>Movie Search <span className="tag">by {searchTerm}</span></h1>
+                <h1>Movie Search by<span className="tag"> {searchTerm}</span></h1>
                 <div className="movie-options">
                     <SearchBar
                         searchTerm={searchTerm}
