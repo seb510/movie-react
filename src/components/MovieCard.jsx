@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function MovieCard({ movie }) {
     return (
-        <div className="data-item">
+        <div className="movie-card">
             <div className="image">
                 <img src={movie.image ? movie.image.medium : '/images/default.jpg'} alt="movie wallpaper" loading="lazy" />
             </div>
