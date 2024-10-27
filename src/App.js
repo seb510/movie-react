@@ -8,12 +8,12 @@ import './styles/styles.css'
 
 export default function App() {
     const [movies, setMovies] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState('Car');
     const [sortOption, setSortOption] = useState('');
     const [error, setError] = useState('');
 
     useEffect(() => {
-        fetchMovies('car').then(setMovies);
+        fetchMovies(searchTerm).then(setMovies);
     }, []);
 
     const handleSearch = () => {
@@ -26,17 +26,21 @@ export default function App() {
     };
 
     return (
-        <div className="container">
-            <ThemeToggle />
-            <h1>Movie Search</h1>
-            <SearchBar
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                onSearch={handleSearch}
-                error={error}
-            />
-            <SortDropDown setSortOption={setSortOption} />
-            <MovieList movies={movies} sortOption={sortOption} />
-        </div>
+        <section className="movie-section">
+            <div className="container">
+                <ThemeToggle/>
+                <h1>Movie Search <span className="tag">by {searchTerm}</span></h1>
+                <div className="movie-options">
+                    <SearchBar
+                        searchTerm={searchTerm}
+                        setSearchTerm={setSearchTerm}
+                        onSearch={handleSearch}
+                        error={error}
+                    />
+                    <SortDropDown setSortOption={setSortOption}/>
+                </div>
+                <MovieList movies={movies} sortOption={sortOption}/>
+            </div>
+        </section>
     );
 }
