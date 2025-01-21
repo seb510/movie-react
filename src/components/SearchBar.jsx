@@ -13,7 +13,7 @@ export default function SearchBar({
         placeholder="Search for movies..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyUp={(e) => e.key === "Enter" && onSearch()}
+        onKeyDown={(e) => e.key === "Enter" && onSearch()}
       />
       <button onClick={onSearch} className="search-button">
         Search
