@@ -1,29 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
+import ClockBlock from "./components/ClockBlock";
 import MovieList from "./components/MovieList";
 import SearchBar from './components/SearchBar';
+import ThemeToggle from './components/ThemToggle';
 import SortDropDown from './helpers/SortDropDown';
-import ThemeToggle from "./components/ThemToggle";
-import { fetchMovies } from "./API/api";
-import './styles/styles.css'
-import ClockBlock from "./components/ClockBlock";
+import {fetchMovies} from "./API/api";
+import './styles/styles.css';
 
 export default function App() {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('Car');
     const [sortOption, setSortOption] = useState('');
-    const [error, setError] = useState('');
+    const [searchError, setSearchError] = useState('');
 
-    useEffect(() => {
-        fetchMovies(searchTerm).then(setMovies);
-    }, [searchTerm]);
-
-    const handleSearch = () => {
+    // Extracted function to validate and fetch movies
+    const validateAndFetchMovies = async () => {
         if (!searchTerm.trim()) {
-            setError("Please enter a search term.");
+            setSearchError("Please enter a search term.");
             return;
         }
-        setError("");
-        fetchMovies(searchTerm).then(setMovies);
+        setSearchError("");
+        const fetchedMovies = await fetchMovies(searchTerm);
+        setMovies(fetchedMovies);
+    };
+
+    useEffect(() => {
+        // Immediately invoked async function to handle the promise
+        (async () => {
+            await validateAndFetchMovies(); // Handles the async function explicitly
+        })();
+    }, [searchTerm]);
+
+    const handleSearch = async () => {
+        await validateAndFetchMovies(); // Ensures the promise is not ignored
     };
 
     return (
@@ -36,8 +45,8 @@ export default function App() {
                     <SearchBar
                         searchTerm={searchTerm}
                         setSearchTerm={setSearchTerm}
-                        onSearch={handleSearch}
-                        error={error}
+                        onSearch={handleSearch} // Ensures search handling awaits validation
+                        error={searchError}
                     />
                     <SortDropDown setSortOption={setSortOption}/>
                 </div>
